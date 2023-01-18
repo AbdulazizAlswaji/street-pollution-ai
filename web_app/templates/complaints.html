@@ -1,0 +1,54 @@
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mapping</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static '/css/apexcharts.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+
+
+
+</head>
+
+<body class="mb-5">
+
+    <div class="container  board center p-2 row">
+
+        <div class="col-12 text-start">
+            <h3 class="label mb-3 text-start"> Upload your file </h3>
+        </div>
+
+        <div class="col-9 text-start">
+            <form action="{% url 'upload'%}" method="post" enctype="multipart/form-data" class="mb-2">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-9 "> <input type="file" accept="image/*" class="btn btn-outline-info" name="image"
+                            id="image" style="width: 95%;" /> </div>
+                    <div class="col-3 "> <input type="submit" value="upload" id="upload" class="btn btn-outline-info "
+                            style="height:42px" />
+                    </div>
+                </div>
+            </form>
+            <div class="mt-2 text-start label-3"> <span class="c2" id="error">{{error}} </span></div>
+            <div class="mt-2 text-start label-3"> <span class="c3" id="status">{{status}} </span></div>
+        </div>
+
+
+</body>
+
+</html>
+
+{% endblock %}

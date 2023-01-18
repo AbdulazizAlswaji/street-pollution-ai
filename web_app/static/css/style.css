@@ -1,0 +1,97 @@
+@font-face {
+    font-family: BebasNeue-Regular;
+    src: url(../fonts/BebasNeue-Regular.ttf);
+}
+
+@font-face {
+    font-family: Kanit-ExtraLight;
+    src: url(../fonts/Kanit-ExtraLight.ttf);
+}
+
+@font-face {
+    font-family: Lato-Regular;
+    src: url(../fonts/Lato-Regular.ttf);
+}
+
+
+.center {
+    width: 50%;
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .c1 {
+      color: #fff;
+  }
+
+  .c2 {
+    color: #ed0505;
+  }
+
+  .c3 {
+    color: #0af20a;
+  }
+
+  .c4 {
+    color: #022741;
+  }
+
+  .c5 {
+    color: #52065c;
+  }
+
+body {
+    background-color: #210b32;
+    font-size: 13px;
+    font-family: Kanit-ExtraLight;
+    color: #fff;
+    text-align: center;
+}
+
+
+.board {
+    border: 12px solid #210b32;
+    background-color: #2f1545;
+    padding: 18px;
+    opacity: 0.8;
+}
+
+.label {
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.label-2 {
+    text-transform: uppercase;
+    font-size: 8px;
+    font-weight: bold;
+}
+
+.label-3 {
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.icon {
+    height: 39px;
+    width: 39px;
+}
+
+a {
+    color:#fff;
+    text-decoration: none;
+}
+
+.b {
+border:1px solid red;
+}
+
+#table-res tr:hover td {
+    color: #069576;
+    cursor: pointer;
+}
