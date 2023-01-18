@@ -1,0 +1,82 @@
+{% block content %} {% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mapping</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <!-- <link rel="stylesheet" href="{% static '/css/apexcharts.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </head>
+
+  <body class="mb-5 row">
+    <div class=" container-fluid ">
+      <table class="table table" id="report">
+        <tr>
+          <th class="c1">Image</th>
+          <th class="c1">GRAFFITI</th>
+          <th class="c1">FADED_SIGNAGE</th>
+          <th class="c1">POTHOLES</th>
+          <th class="c1">GARBAGE</th>
+          <th class="c1">CONSTRUCTION_ROAD</th>
+          <th class="c1">BROKEN_SIGNAGE</th>
+          <th class="c1">BAD_STREETLIGHT</th>
+          <th class="c1">BAD_BILLBOARD</th>
+          <th class="c1">SAND_ON_ROAD</th>
+          <th class="c1">CLUTTER_SIDEWALK</th>
+          <th class="c1">UNKEPT_FACADE</th>
+        </tr>
+
+        {% for report in reports %}
+        <tr>
+          <td class="c1">
+            <span
+              data-bs-toggle="modal"
+              data-bs-target="#show-image"
+              onclick="show_image('{{report.image_path}}')"
+              >{{report.image_path}}</span
+            >
+          </td>
+          <td class="c1">{{report.GRAFFITI}}</td>
+          <td class="c1">{{report.FADED_SIGNAGE}}</td>
+          <td class="c1">{{report.POTHOLES}}</td>
+          <td class="c1">{{report.GARBAGE}}</td>
+          <td class="c1">{{report.CONSTRUCTION_ROAD}}</td>
+          <td class="c1">{{report.BROKEN_SIGNAGE}}</td>
+          <td class="c1">{{report.BAD_STREETLIGHT}}</td>
+          <td class="c1">{{report.BAD_BILLBOARD}}</td>
+          <td class="c1">{{report.SAND_ON_ROAD}}</td>
+          <td class="c1">{{report.CLUTTER_SIDEWALK}}</td>
+          <td class="c1">{{report.UNKEPT_FACADE}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <div class="modal" id="show-image">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="row">
+            <div class="col-6">
+              <h3 class="c4">Actual image</h3>
+              <img id="actual-image" class="image_size" />
+            </div>
+            <div class="col-6">
+              <h3 class="c4">Detected objects</h3>
+              <img id="detected-objects" class="image_size" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+{% endblock %}

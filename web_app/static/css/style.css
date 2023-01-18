@@ -95,3 +95,12 @@ border:1px solid red;
     color: #069576;
     cursor: pointer;
 }
+
+#report tr td  {
+    color:#fff;
+}
+
+.image_size {
+    height: 80%;
+    width: 90%;
+}

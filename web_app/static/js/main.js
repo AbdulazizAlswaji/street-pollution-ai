@@ -15,9 +15,11 @@ $(document).ready(() => {
  
 
 
-
-
-
-
-
 });
+
+show_image = (src) => {
+    let actual_image = '/static/images/uploads/' + src;
+    let detected_image = '/static/images/detections/' + src;
+    $('#actual-image').attr('src', actual_image );
+    $('#detected-objects').attr('src', detected_image );
+}

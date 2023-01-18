@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Report
 
 from PIL import Image
 import os
@@ -26,12 +27,12 @@ def object_detection(image_path, df, image_name, detection_path):
         height = image.shape[0]
         width = image.shape[1]
 
-        print('class:' , df.iloc[i]['name'])
-        print('xmin:' , xmin)
-        print('ymin:' , ymin)
-        print('xmax:' , xmax)
-        print('ymax:' , ymax)
-        print('----------------------------')
+        # print('class:' , df.iloc[i]['name'])
+        # print('xmin:' , xmin)
+        # print('ymin:' , ymin)
+        # print('xmax:' , xmax)
+        # print('ymax:' , ymax)
+        # print('----------------------------')
             
         cv2.rectangle(image,
                       (int(xmin) , int(ymin) ),
@@ -90,9 +91,77 @@ def upload(request):
         model = torch.hub.load('yolov5', 'custom', path=weight_path, source='local')
 
         detection = model(new_image)
-        detect = object_detection(new_image, detection.pandas().xyxy[0], image_name, detection_path)
+        results = detection.pandas().xyxy[0]
+        detect = object_detection(new_image, results, image_name, detection_path)
         
         if detect == True:
+            results_agg = pd.DataFrame(results.groupby('name')['class'].count()).reset_index()
+            results_agg = results_agg.rename(columns={
+                'class': 'count'
+            })
+
+            try:
+                GRAFFITI= results_agg[results_agg['name'] =='GRAFFITI']['count'].values[0]
+            except:
+                GRAFFITI = 0
+            
+            try:
+                FADED_SIGNAGE= results_agg[results_agg['name'] =='FADED_SIGNAGE']['count'].values[0]
+            except:
+                FADED_SIGNAGE = 0
+            
+            try:
+                POTHOLES= results_agg[results_agg['name'] =='POTHOLES']['count'].values[0]
+            except:
+                POTHOLES = 0
+            
+            try:
+                GARBAGE= results_agg[results_agg['name'] =='GARBAGE']['count'].values[0]
+            except:
+                GARBAGE = 0
+            
+            try:
+                CONSTRUCTION_ROAD= results_agg[results_agg['name'] =='CONSTRUCTION_ROAD']['count'].values[0]
+            except:
+                CONSTRUCTION_ROAD = 0
+            
+            try:
+                BROKEN_SIGNAGE= results_agg[results_agg['name'] =='BROKEN_SIGNAGE']['count'].values[0]
+            except:
+                BROKEN_SIGNAGE = 0
+            
+            try:
+                BAD_STREETLIGHT= results_agg[results_agg['name'] =='BAD_STREETLIGHT']['count'].values[0]
+            except:
+                BAD_STREETLIGHT = 0
+            
+            try:
+                SAND_ON_ROAD= results_agg[results_agg['name'] =='SAND_ON_ROAD']['count'].values[0]
+            except:
+                SAND_ON_ROAD = 0
+            
+            try:
+                CLUTTER_SIDEWALK= results_agg[results_agg['name'] =='CLUTTER_SIDEWALK']['count'].values[0]
+            except:
+                CLUTTER_SIDEWALK = 0
+            
+            try:
+                UNKEPT_FACADE= results_agg[results_agg['name'] =='UNKEPT_FACADE']['count'].values[0]
+            except:
+                UNKEPT_FACADE = 0
+            
+            try:
+                BAD_BILLBOARD= results_agg[results_agg['name'] =='BAD_BILLBOARD']['count'].values[0]
+            except:
+                BAD_BILLBOARD = 0
+            
+            add_report = Report(image_path=image_name,GRAFFITI=GRAFFITI, FADED_SIGNAGE=FADED_SIGNAGE, POTHOLES=POTHOLES,
+ GARBAGE=GARBAGE, CONSTRUCTION_ROAD=CONSTRUCTION_ROAD, BROKEN_SIGNAGE=BROKEN_SIGNAGE,
+ BAD_STREETLIGHT=BAD_STREETLIGHT, BAD_BILLBOARD=BAD_BILLBOARD,
+ SAND_ON_ROAD=SAND_ON_ROAD, CLUTTER_SIDEWALK=CLUTTER_SIDEWALK, UNKEPT_FACADE=UNKEPT_FACADE)
+            add_report.save()
+            
+
             return render(request, 'complaints.html', context={'status': 'Image had been sent .. thanks!'})
         else:
             return render(request, 'complaints.html', context={'error': 'Error occurd'})
@@ -100,5 +169,12 @@ def upload(request):
 
     else:
         return render(request, 'complaints.html', context={'error': 'Please select an image'})
+
+
+
+def dashboard(request):
+    reports = Report.objects.all()
+    return render(request, 'dashboard.html', context={'reports': reports})
+    
 
 
