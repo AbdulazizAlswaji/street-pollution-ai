@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Mapping</title>
+    <title>Complaints</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -13,13 +13,19 @@
 
     <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/config.js' %}"></script>
+    <script src="{% static '/js/animation.js' %}"></script>
+    <script src="{% static 'js/cities.js' %}"></script>
+    <script src="{% static 'js/districts.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
   </head>
 
   <body class="mb-5 row">
+    <div id="particles-js" class="center" style="position: absolute; height: 100%; width:100%;"></div>
     <div class=" container-fluid ">
-      <table class="table table" id="report">
+      <table class="table table" id="report" style="position: relative;">
         <tr>
+          <th class="c1">Resolved</th>
           <th class="c1">Image</th>
           <th class="c1">Description</th>
           <th class="c1">City</th>
@@ -39,6 +45,7 @@
 
         {% for report in reports %}
         <tr>
+          <td class="c1"><input type="checkbox" value="{{report.id}}" class="resolved"></td>
           <td class="c1">
             <span
               data-bs-toggle="modal"
@@ -47,24 +54,44 @@
               >{{report.image_path}}</span
             >
           </td>
-          <td class="c1">{{report.description}}</td>
-          <td class="c1">{{report.city}}</td>
-          <td class="c1">{{report.district}}</td>
-          <td class="c1  suverity " style="opacity: calc({{ report.GRAFFITI }} / {{ report.total_detections }});">{{report.GRAFFITI}}</td>
-          <td class="c1 suverity " style="opacity: calc({{ report.FADED_SIGNAGE }} / {{ report.total_detections }});">{{report.FADED_SIGNAGE}}</td>
-          <td class="c1 suverity " style="opacity: calc({{ report.POTHOLES }} / {{ report.total_detections }});">{{report.POTHOLES}}</td>
-          <td class="c1 suverity " style="opacity: calc({{ report.GARBAGE }} / {{ report.total_detections }});">{{report.GARBAGE}}</td>
-          <td class="c1 suverity " style="opacity: calc({{ report.CONSTRUCTION_ROAD }} / {{ report.total_detections }});">{{report.CONSTRUCTION_ROAD}}</td>
-          <td class="c1 suverity " style="opacity: calc({{ report.BROKEN_SIGNAGE }} / {{ report.total_detections }});">{{report.BROKEN_SIGNAGE}}</td>
-          <td class="c1 suverity " style="opacity: calc({{ report.BAD_STREETLIGHT }} / {{ report.total_detections }});">{{report.BAD_STREETLIGHT}}</td>
-          <td class="c1 suverity " style="opacity: calc({{ report.BAD_BILLBOARD }} / {{ report.total_detections }});">{{report.BAD_BILLBOARD}}</td>
-          <td class="c1 suverity " style="opacity: calc({{ report.SAND_ON_ROAD }} / {{ report.total_detections }});">{{report.SAND_ON_ROAD}}</td>
-          <td class="c1 suverity " style="opacity: calc({{ report.CLUTTER_SIDEWALK}} / {{ report.total_detections }});">{{report.CLUTTER_SIDEWALK}}</td>
-          <td class="c1 suverity " style="opacity: calc({{ report.UNKEPT_FACADE}} / {{ report.total_detections }});">{{report.UNKEPT_FACADE}}</td>
+          <td class="c1 ">{{report.description}}</td>
+          <td class="c1 city-{{report.id}}">{{report.city}}</td>
+          <td class="c1 district-{{report.id}}">{{report.district}}</td>
+          <td class="c1  suverity " style="opacity: calc({{ report.GRAFFITI }} / {{ report.total_detections }} + 0.3);">{{report.GRAFFITI}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.FADED_SIGNAGE }} / {{ report.total_detections }} + 0.3);">{{report.FADED_SIGNAGE}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.POTHOLES }} / {{ report.total_detections }} + 0.3);">{{report.POTHOLES}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.GARBAGE }} / {{ report.total_detections }} + 0.3);">{{report.GARBAGE}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.CONSTRUCTION_ROAD }} / {{ report.total_detections }} + 0.3);">{{report.CONSTRUCTION_ROAD}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.BROKEN_SIGNAGE }} / {{ report.total_detections }} + 0.3);">{{report.BROKEN_SIGNAGE}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.BAD_STREETLIGHT }} / {{ report.total_detections }} + 0.3);">{{report.BAD_STREETLIGHT}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.BAD_BILLBOARD }} / {{ report.total_detections }} + 0.3);">{{report.BAD_BILLBOARD}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.SAND_ON_ROAD }} / {{ report.total_detections }} + 0.3);">{{report.SAND_ON_ROAD}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.CLUTTER_SIDEWALK}} / {{ report.total_detections }} + 0.3);">{{report.CLUTTER_SIDEWALK}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.UNKEPT_FACADE}} / {{ report.total_detections }} + 0.3);">{{report.UNKEPT_FACADE}}</td>
         </tr>
+        <script>
+          var city_id = '{{report.city}}';
+          city_id = city_id - 1;
+
+          $('.city-{{report.id}}').html(cities[city_id]['name_en']);
+
+          Object.keys(districts).forEach((e) => {
+            if (districts[e]['district_id'] == '{{report.district}}') {
+              $('.district-{{report.id}}').html(districts[e]['name_en']);
+            }
+          })
+
+          
+
+          
+        </script>
         {% endfor %}
       </table>
     </div>
+
+    
+
+
 
     <div class="modal" id="show-image">
       <div class="modal-dialog modal-lg">
