@@ -62,13 +62,15 @@ body {
 
 .label {
     text-transform: uppercase;
-    font-size: 11px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .label-2 {
     text-transform: uppercase;
     font-size: 8px;
     font-weight: bold;
+    color: #037495;
 }
 
 .label-3 {
@@ -78,8 +80,8 @@ body {
 }
 
 .icon {
-    height: 39px;
-    width: 39px;
+    height: 38px;
+    width: 86px;
 }
 
 a {
@@ -103,4 +105,12 @@ border:1px solid red;
 .image_size {
     height: 80%;
     width: 90%;
+}
+
+#issue-desc {
+    width: 100%;
+    padding: 9px;
+    font-size: 16px;
+    color: #037495;
+    height: 74px;
 }
