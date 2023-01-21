@@ -5,6 +5,9 @@ from django.db import models
 class Report(models.Model):
     
     image_path = models.CharField(max_length=100, null=True)
+    city = models.CharField(max_length=100, null=True)
+    district = models.CharField(max_length=100, null=True)
+    description = models.CharField(max_length=200, null=True)
     GRAFFITI = models.IntegerField()
     FADED_SIGNAGE = models.IntegerField()
     POTHOLES = models.IntegerField()

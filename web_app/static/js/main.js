@@ -19,6 +19,30 @@ $(document).ready(() => {
     });
 
 
+    
+    $('#select-city').on('change', function() {
+       let city_id = $(this).find(':selected').val();
+
+       let districts_list = '';
+       Object.keys(districts).forEach((e) => {
+        if (districts[e].city_id == city_id) {
+            districts_list += `<option value="${districts[e].district_id}">${districts[e].name_en}</option>`;
+        }
+     });
+     $('#select-district').html('');
+     $('#select-district').append(districts_list);
+    });
+
+    let cities_list = '';
+    Object.keys(cities).forEach((e) => {
+       cities_list += `<option value="${cities[e].city_id}">${cities[e].name_en}</option>`;
+    });
+
+    $('#select-city').append(cities_list);
+
+
+
+
  
 
 
