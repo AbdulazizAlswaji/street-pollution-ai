@@ -15,6 +15,8 @@
 
     <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/config.js' %}"></script>
+    <script src="{% static '/js/animation.js' %}"></script>
     <script src="{% static 'js/cities.js' %}"></script>
     <script src="{% static 'js/districts.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
@@ -27,6 +29,7 @@
 
 <body class="mb-5">
 
+    <div id="particles-js" class="center" style="position: absolute; height: 100%; width:100%;"></div>
     <div class="container center p-1 row">
        <form action="{% url 'upload'%}" method="post" enctype="multipart/form-data" class="mb-2">
         <input type="file" accept="image/*" class="btn btn-outline-info" name="image" id="image" style="display: none;" multiple/>

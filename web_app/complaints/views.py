@@ -100,7 +100,7 @@ def upload(request):
                     save_image = Image.open(image)
                     save_image = save_image.save(new_image)
 
-                    weight_path = 'yolov5/runs/train/exp2/weights/best.pt'
+                    weight_path = 'yolov5/runs/train/exp/weights/best.pt'
                     detection_path = 'static/images/detections/'
                     model = torch.hub.load('yolov5', 'custom', path=weight_path, source='local')
 
@@ -169,7 +169,8 @@ def upload(request):
                         except:
                             BAD_BILLBOARD = 0
                         
-                        add_report = Report(image_path=image_name, city=city_id, district=district_id, description=description,GRAFFITI=GRAFFITI, FADED_SIGNAGE=FADED_SIGNAGE, POTHOLES=POTHOLES,GARBAGE=GARBAGE, CONSTRUCTION_ROAD=CONSTRUCTION_ROAD, BROKEN_SIGNAGE=BROKEN_SIGNAGE,BAD_STREETLIGHT=BAD_STREETLIGHT, BAD_BILLBOARD=BAD_BILLBOARD,SAND_ON_ROAD=SAND_ON_ROAD, CLUTTER_SIDEWALK=CLUTTER_SIDEWALK, UNKEPT_FACADE=UNKEPT_FACADE)
+                        total_detections = GRAFFITI + FADED_SIGNAGE + POTHOLES + GARBAGE + CONSTRUCTION_ROAD+ BROKEN_SIGNAGE + BAD_STREETLIGHT+ SAND_ON_ROAD+CLUTTER_SIDEWALK+UNKEPT_FACADE+BAD_BILLBOARD
+                        add_report = Report(image_path=image_name, total_detections=total_detections, resolved='',  city=city_id, district=district_id, description=description,GRAFFITI=GRAFFITI, FADED_SIGNAGE=FADED_SIGNAGE, POTHOLES=POTHOLES,GARBAGE=GARBAGE, CONSTRUCTION_ROAD=CONSTRUCTION_ROAD, BROKEN_SIGNAGE=BROKEN_SIGNAGE,BAD_STREETLIGHT=BAD_STREETLIGHT, BAD_BILLBOARD=BAD_BILLBOARD,SAND_ON_ROAD=SAND_ON_ROAD, CLUTTER_SIDEWALK=CLUTTER_SIDEWALK, UNKEPT_FACADE=UNKEPT_FACADE)
                         add_report.save()
             
 

@@ -19,7 +19,10 @@ class Report(models.Model):
     SAND_ON_ROAD = models.IntegerField()
     CLUTTER_SIDEWALK = models.IntegerField()
     UNKEPT_FACADE = models.IntegerField()
+    resolved = models.CharField(max_length=100, null=True)
+    total_detections = models.IntegerField()
     issued = models.DateTimeField(auto_now_add=True),
+    
 
     def __str__(self):
         return self.image_path

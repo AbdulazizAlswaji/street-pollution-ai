@@ -6,6 +6,10 @@ $(document).ready(() => {
     //     $('form').submit();
 
     // });
+    particlesJS.load('particles-js', '../static/js/effects.json');
+    particlesJS.load('particles-js', '../../static/js/effects.json');
+
+
 
     $('#image').on('click', () => {
         $('#error').html('');
