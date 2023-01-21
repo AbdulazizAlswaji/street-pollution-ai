@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import JsonResponse
 from .models import Report
 
 from PIL import Image
@@ -186,8 +187,32 @@ def upload(request):
 
 
 def dashboard(request):
-    reports = Report.objects.all()
+    reports = Report.objects.filter(resolved='')
     return render(request, 'dashboard.html', context={'reports': reports})
+
+
+def resolve_issue(request):
+    report = Report.objects.get(id=int(request.GET['_id']))
+    report.resolved = request.GET['resolved']
+    report.save()
+    return HttpResponse('done')
+
+
+def kpis(request):
+    return render(request, 'kpis.html')
+
+
+def get_cities(request):
+    cities = list(Report.objects.order_by().values_list('city', flat=True).distinct())
+    cities = {'cities': cities}
+    return JsonResponse(cities)
+
+def get_districts(request):
+    districts = list(Report.objects.filter(city=int(request.GET['_id'])).order_by().values_list('district', flat=True).distinct())
+    districts = {'districts': districts}
+    return JsonResponse(districts)
+
+
     
 
 

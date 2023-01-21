@@ -1,0 +1,100 @@
+{% block content %} {% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Complaints</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <!-- <link rel="stylesheet" href="{% static '/css/apexcharts.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/config.js' %}"></script>
+    <script src="{% static '/js/animation.js' %}"></script>
+    <script src="{% static 'js/cities.js' %}"></script>
+    <script src="{% static 'js/districts.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </head>
+
+  <body class="mb-5 row">
+    <div id="particles-js" class="center" style="position: absolute; height: 100%; width:100%;"></div>
+    
+    <div class="container center p-1 row">
+        <div class="board col-12 row">
+            <div class="col-6"> <span class="label-3 text-start">select a city:</span><select class="form-select" id="av-city" name="av-city"> </select></div>
+            <div class="col-6"> <span class="label-3 text-start">select a district:</span><select class="form-select" id="av-district" name="av-district"> </select></div>
+
+            <div class="col-12 mt-5">
+                <table class="table">
+                    <tr>
+                    <th class="c1"> KPI </th> <th class="c1">Formula</th> <th class="c1">Weight</th> 
+                    <th class="c1">Actual value</th> <th class="c1">Target</th> <th class="c1">Ambition</th> <th class="c1">Score</th>
+                    </tr>
+
+                    <tr>
+                        <td class="c1">Garbage Rate</td>
+                        <td class="c1">Garbage/All</td>
+                        <td class="c1">25%</td>
+                        <td class="c1" id="g_act"></td>
+                        <td class="c1">35%</td>
+                        <td class="c1">0%</td>
+                        <td class="c1" id="g_score"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="c1">Pollution Severity</td>
+                        <td class="c1"># of Top 3 classes/All</td>
+                        <td class="c1">30%</td>
+                        <td class="c1" id="s_act"></td>
+                        <td class="c1">10%</td>
+                        <td class="c1">0%</td>
+                        <td class="c1" id="s_score"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="c1">Pollution Rate</td>
+                        <td class="c1"># of items > 5</td>
+                        <td class="c1">20%</td>
+                        <td class="c1" id="p_act"></td>
+                        <td class="c1">2%</td>
+                        <td class="c1">0%</td>
+                        <td class="c1" id="p_score"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="c1">Population Engagement</td>
+                        <td class="c1"># of Pics uploaded</td>
+                        <td class="c1">10%</td>
+                        <td class="c1" id="e_act"></td>
+                        <td class="c1">65%</td>
+                        <td class="c1">100%</td>
+                        <td class="c1" id="e_score"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="c1">Population Density</td>
+                        <td class="c1"># of Cars</td>
+                        <td class="c1">15%</td>
+                        <td class="c1" id="c_act"></td>
+                        <td class="c1">5%</td>
+                        <td class="c1">15%</td>
+                        <td class="c1" id="c_score"></td>
+                    </tr>
+
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+     </div>
+  </body>
+</html>
+
+{% endblock %}

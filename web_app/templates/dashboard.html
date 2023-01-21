@@ -24,25 +24,25 @@
     <div id="particles-js" class="center" style="position: absolute; height: 100%; width:100%;"></div>
     <div class=" container-fluid ">
       <table class="table table" id="report" style="position: relative;">
-        <tr>
-          <th class="c1">Resolved</th>
-          <th class="c1">Image</th>
-          <th class="c1">Description</th>
-          <th class="c1">City</th>
-          <th class="c1">District</th>
-          <th class="c1">GRAFFITI</th>
-          <th class="c1">FADED_SIGNAGE</th>
-          <th class="c1">POTHOLES</th>
-          <th class="c1">GARBAGE</th>
-          <th class="c1">CONSTRUCTION_ROAD</th>
-          <th class="c1">BROKEN_SIGNAGE</th>
-          <th class="c1">BAD_STREETLIGHT</th>
-          <th class="c1">BAD_BILLBOARD</th>
-          <th class="c1">SAND_ON_ROAD</th>
-          <th class="c1">CLUTTER_SIDEWALK</th>
-          <th class="c1">UNKEPT_FACADE</th>
+        <tr class="header"  style="position: sticky;top: 0" scope="col">
+          <th class="c1 header" scope="col">Resolved</th>
+          <th class="c1 header" scope="col">Image</th>
+          <th class="c1 header" scope="col">Description</th>
+          <th class="c1 header" scope="col">City</th>
+          <th class="c1 header" scope="col">District</th>
+          <th class="c1 header" scope="col">GRAFFITI</th>
+          <th class="c1 header" scope="col">FADED_SIGNAGE</th>
+          <th class="c1 header" scope="col">POTHOLES</th>
+          <th class="c1 header" scope="col">GARBAGE</th>
+          <th class="c1 header" scope="col">CONSTRUCTION_ROAD</th>
+          <th class="c1 header" scope="col">BROKEN_SIGNAGE</th>
+          <th class="c1 header" scope="col">BAD_STREETLIGHT</th>
+          <th class="c1 header" scope="col" scope="col">BAD_BILLBOARD</th>
+          <th class="c1 header" scope="col">SAND_ON_ROAD</th>
+          <th class="c1 header" scope="col">CLUTTER_SIDEWALK</th>
+          <th class="c1 header" scope="col">UNKEPT_FACADE</th>
         </tr>
-
+        {% csrf_token %}
         {% for report in reports %}
         <tr>
           <td class="c1"><input type="checkbox" value="{{report.id}}" class="resolved"></td>

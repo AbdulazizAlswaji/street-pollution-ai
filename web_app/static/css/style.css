@@ -98,6 +98,15 @@ border:1px solid red;
     cursor: pointer;
 }
 
+.header{
+    position:sticky;
+    top: 0 ;
+}
+
+#report {
+    width: 100%;
+}
+
 #report tr td  {
     color:#fff;
 }
