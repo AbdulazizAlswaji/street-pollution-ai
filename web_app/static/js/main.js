@@ -55,6 +55,48 @@ $('#av-city').on('change', function() {
  });
 
 
+ $('#av-district').on('change', function()  {
+
+
+    let g = Math.random().toFixed(2) ;
+    $('#g_act').html( g * 100 + '%')
+    g_t=(((0.35 - g ) / (0.35 - 0.1)) * 0.2).toFixed(2)
+    $('#g_score').html(  g_t  + '%');
+
+    let s = Math.random().toFixed(2) ;
+    $('#s_act').html( s * 100 + '%')
+    //((target - act ) / (target - amb)) * w
+    s_t = (((0.25 - s ) / (0.25 - 0.1)) * 0.3).toFixed(2)
+    $('#s_score').html(   s_t + '%');
+
+
+    let p = Math.random().toFixed(2) ;
+    $('#p_act').html( p * 100 )
+    //((target - act ) / (target - amb)) * w
+    p_t=(((7 - p ) / (7 - 2)) * 0.30).toFixed(2)
+    $('#p_score').html( p_t   + '%');
+
+
+    let e = Math.random().toFixed(2) ;
+    $('#e_act').html( e * 100 )
+    //((target - act ) / (target - amb)) * w
+    e_t=(((50 - e ) / (50 - 250)) * .10).toFixed(2)
+    $('#e_score').html( e_t   + '%');
+
+    let c = Math.random().toFixed(2) ;
+    $('#c_act').html( c * 100 )
+    //((target - act ) / (target - amb)) * w
+    c_t = (((15 - c ) / (15 - 20)) * .10).toFixed(2)
+    $('#c_score').html(   c_t + '%');
+
+    
+score = ((parseFloat(g_t)+parseFloat(s_t)+parseFloat(p_t)+parseFloat(e_t)+parseFloat(c_t)) ).toFixed(2) 
+$('#score').html(score + '%')
+    
+
+ })
+
+
 
 
 

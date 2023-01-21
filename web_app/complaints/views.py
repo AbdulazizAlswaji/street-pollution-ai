@@ -213,6 +213,6 @@ def get_districts(request):
     return JsonResponse(districts)
 
 
-    
+
 
 

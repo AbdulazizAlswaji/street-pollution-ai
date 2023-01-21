@@ -9,4 +9,5 @@ urlpatterns = [
     path('kpis', views.kpis, name='kpis'),
     path('get_cities', views.get_cities, name='get_cities'),
     path('get_districts', views.get_districts, name='get_districts'),
+    
 ]
