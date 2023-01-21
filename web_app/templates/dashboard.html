@@ -50,17 +50,17 @@
           <td class="c1">{{report.description}}</td>
           <td class="c1">{{report.city}}</td>
           <td class="c1">{{report.district}}</td>
-          <td class="c1">{{report.GRAFFITI}}</td>
-          <td class="c1">{{report.FADED_SIGNAGE}}</td>
-          <td class="c1">{{report.POTHOLES}}</td>
-          <td class="c1">{{report.GARBAGE}}</td>
-          <td class="c1">{{report.CONSTRUCTION_ROAD}}</td>
-          <td class="c1">{{report.BROKEN_SIGNAGE}}</td>
-          <td class="c1">{{report.BAD_STREETLIGHT}}</td>
-          <td class="c1">{{report.BAD_BILLBOARD}}</td>
-          <td class="c1">{{report.SAND_ON_ROAD}}</td>
-          <td class="c1">{{report.CLUTTER_SIDEWALK}}</td>
-          <td class="c1">{{report.UNKEPT_FACADE}}</td>
+          <td class="c1  suverity " style="opacity: calc({{ report.GRAFFITI }} / {{ report.total_detections }});">{{report.GRAFFITI}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.FADED_SIGNAGE }} / {{ report.total_detections }});">{{report.FADED_SIGNAGE}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.POTHOLES }} / {{ report.total_detections }});">{{report.POTHOLES}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.GARBAGE }} / {{ report.total_detections }});">{{report.GARBAGE}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.CONSTRUCTION_ROAD }} / {{ report.total_detections }});">{{report.CONSTRUCTION_ROAD}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.BROKEN_SIGNAGE }} / {{ report.total_detections }});">{{report.BROKEN_SIGNAGE}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.BAD_STREETLIGHT }} / {{ report.total_detections }});">{{report.BAD_STREETLIGHT}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.BAD_BILLBOARD }} / {{ report.total_detections }});">{{report.BAD_BILLBOARD}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.SAND_ON_ROAD }} / {{ report.total_detections }});">{{report.SAND_ON_ROAD}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.CLUTTER_SIDEWALK}} / {{ report.total_detections }});">{{report.CLUTTER_SIDEWALK}}</td>
+          <td class="c1 suverity " style="opacity: calc({{ report.UNKEPT_FACADE}} / {{ report.total_detections }});">{{report.UNKEPT_FACADE}}</td>
         </tr>
         {% endfor %}
       </table>

@@ -114,3 +114,7 @@ border:1px solid red;
     color: #037495;
     height: 74px;
 }
+
+.suverity {
+    background-color: #771313 !important;
+}
